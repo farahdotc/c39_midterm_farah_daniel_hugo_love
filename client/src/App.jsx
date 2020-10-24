@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { AppContextProvider } from './context/AppContext';
-import ContextDemo from './components/ContextDemo';
+import React from 'react';
 import MainPage from './components/MainPage';
 import ArtistPage from './components/ArtistPage';
 import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 const App = () => {
   return (
     <div>
-      <MainPage />
-      <ArtistPage />
+      <BrowserRouter>
+        <Route exact path="/" component={MainPage} />
+        <Route exact path="/artist_page" component={ArtistPage} />
+      </BrowserRouter>
     </div>
   );
 };
