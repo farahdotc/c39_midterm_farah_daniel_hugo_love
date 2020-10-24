@@ -16,10 +16,10 @@ const MainPage = () => {
     >
       <h1
         style={{
-          fontSize: '10rem',
+          fontSize: '7rem',
           color: '#CFCECA',
           paddingBottom: '4.8rem',
-          fontFamily: 'Montserrat'
+          fontFamily: 'Montserrat , sanSerif'
         }}
       >
         you love music too?
