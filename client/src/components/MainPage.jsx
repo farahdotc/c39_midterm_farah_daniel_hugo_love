@@ -1,7 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
+import axios from 'axios';
 
 const MainPage = () => {
+  const [artist, setArtist] = useState('madonna');
+  const [artistInfo, setArtistInfo] = useState({});
+
+  useEffect(() => {
+    const getData = async () => {
+      let response = await axios.get(
+        `theaudiodb.com/api/v1/json/1/search.php?s=madonna`
+      );
+      setArtistInfo(response);
+      console.log(artistInfo);
+    };
+
+    getData();
+  }, []);
+
   return (
     <div
       style={{
@@ -11,6 +27,7 @@ const MainPage = () => {
         flexDirection: 'column',
         display: 'flex',
         justifyContent: 'center',
+        textAlign: 'center',
         alignItems: 'center'
       }}
     >
