@@ -9,7 +9,7 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Route exact path="/" component={MainPage} />
-        <Route exact path="/artist_page" component={ArtistPage} />
+        <Route exact path="/artist_page/:artistParam" component={ArtistPage} />
       </BrowserRouter>
     </div>
   );

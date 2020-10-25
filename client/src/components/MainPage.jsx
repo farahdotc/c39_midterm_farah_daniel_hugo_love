@@ -7,26 +7,35 @@ import { useHistory } from 'react-router-dom';
 
 const MainPage = () => {
   let history = useHistory();
-  const [inputArtist, setInputArtist] = useState('coldplay');
+  let artisInfoUpdated;
+  const [inputArtist, setInputArtist] = useState('');
   const [artist, setArtist] = useState([]);
+  const [visible, setVisible] = useState('hidden');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setInputArtist(e.target.elements.searchbar.value);
-    history.push('/artist_page');
   };
 
   useEffect(() => {
     const getData = async () => {
-      let response = await axios.get(
-        `https://theaudiodb.com/api/v1/json/1/search.php?s=${inputArtist}`
-      );
-      console.log(response.data.artists[0]);
-      setArtist(response.data.artists[0]);
-      // console.log(inputArtist);
+      try{
+        let response = await axios.get(
+          `https://theaudiodb.com/api/v1/json/1/search.php?s=${inputArtist}`
+        );
+        console.log(response.data.artists[0]);
+        setArtist(response.data.artists[0]);
+        artisInfoUpdated = response.data;
+        history.push({pathname: inputArtist && `/artist_page/${inputArtist}`, state: {detail: artisInfoUpdated}});
+        // console.log(inputArtist);
+      } catch(e){
+        console.log(e, 'Artist NOT found')
+        setVisible('visible')
+      }
     };
 
     getData();
+    
     //console.log(artist);
   }, [inputArtist]);
 
@@ -43,11 +52,11 @@ const MainPage = () => {
         alignItems: 'center'
       }}
     >
-      <h1>{artist.strArtist}</h1>
+      {/* <h1>{artist.strArtist}</h1>
       <h1>{artist.idArtist}</h1>
       <h1>{artist.strGenre}</h1>
       <h1>{artist.strArtistThumb}</h1>
-      <h1>{inputArtist}</h1>
+      <h1>{inputArtist}</h1> */}
       <h1
         style={{
           fontSize: '7rem',
@@ -67,6 +76,7 @@ const MainPage = () => {
           style={{ borderRadius: '23px' }}
         />
       </Form>
+      <h1 style={{color: 'red', fontSize: '1rem', visibility: visible}}>Artist NOT found... Try another artist</h1>
     </div>
   );
 };
