@@ -53,7 +53,7 @@ const NavBar = () => {
           <Nav.Link>
             <Link to="/">Home</Link>
           </Nav.Link>
-          <Nav.Link href="#pricing">TOP1</Nav.Link>
+          <Nav.Link href="#pricing">TOP3</Nav.Link>
           <Nav.Link href="#pricing">TOP2</Nav.Link>
         </Nav>
         <Form onSubmit={handleSubmit} inline>
