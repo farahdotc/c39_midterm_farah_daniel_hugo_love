@@ -13,9 +13,7 @@ const ArtistPage = () => {
   const [artistInfo, setArtistInfo] = useState([]);
   const [artistPicName, setArtistPicName] = useState({});
   let { artistParam } = useParams();
-  // let artistGeneralInfo;
-  // artistGeneralInfo = props.location.state.detail.artists[0];
-  // console.log(artistGeneralInfo.strArtistThumb)
+  
   useEffect(() => {
     const fetchDataMainArtist = async () => {
       try{
@@ -23,8 +21,8 @@ const ArtistPage = () => {
         `https://theaudiodb.com/api/v1/json/1/search.php?s=${artistParam}`
       );
       setArtistPicName(response.data.artists[0]);
-      console.log(artistParam);
-      console.log('firstFetch', response.data.artists[0]);
+      //console.log(artistParam);
+      //console.log('firstFetch', response.data.artists[0]);
       } catch(e){
         console.log(e, 'artist not found');
       }
@@ -38,7 +36,7 @@ const ArtistPage = () => {
 
         setArtist(response.data.album);
         setArtistInfo(response.data.album[0]);
-        // console.log(response.data.album);
+        console.log(response.data.album);
         // console.log(response);
         console.log(artistParam);
         // console.log(props.location.state.detail.artists[0])
@@ -51,6 +49,19 @@ const ArtistPage = () => {
     fetchDataMainArtist();
     fetchData();
   }, [artistParam]);
+
+  const sortAscending = () => {
+    //const { artist } = this.state;
+    console.log('artist', artist)
+    //console.log('year', artist[0].intYearReleased)
+    let array;
+    array = artist.sort((a, b) => {
+      console.log(a.intYearReleased)
+      console.log(b.intYearReleased)
+      return a.intYearReleased - b.intYearReleased})
+    setArtist(array)
+    console.log(artist)
+  }
 
   return (
     <>
@@ -73,6 +84,7 @@ const ArtistPage = () => {
             {artistPicName.strArtist}
           </h1>
         </div>
+        <button onClick={sortAscending}>Sort</button>
         <div
           style={{
             margin: '3rem',
