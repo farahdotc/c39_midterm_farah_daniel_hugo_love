@@ -18,30 +18,39 @@ const ArtistPage = () => {
   // console.log(artistGeneralInfo.strArtistThumb)
   useEffect(() => {
     const fetchDataMainArtist = async () => {
+      try{
       let response = await axios.get(
         `https://theaudiodb.com/api/v1/json/1/search.php?s=${artistParam}`
       );
       setArtistPicName(response.data.artists[0]);
       console.log(artistParam);
       console.log('firstFetch', response.data.artists[0]);
+      } catch(e){
+        console.log(e, 'artist not found');
+      }
     };
 
     const fetchData = async () => {
-      let response = await axios.get(
-        `https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artistParam}`
-      );
+      try{
+        let response = await axios.get(
+          `https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artistParam}`
+        );
 
-      setArtist(response.data.album);
-      setArtistInfo(response.data.album[0]);
-      // console.log(response.data.album);
-      // console.log(response);
-      console.log(artistParam);
-      // console.log(props.location.state.detail.artists[0])
+        setArtist(response.data.album);
+        setArtistInfo(response.data.album[0]);
+        // console.log(response.data.album);
+        // console.log(response);
+        console.log(artistParam);
+        // console.log(props.location.state.detail.artists[0])
+      } catch(e){
+
+        console.log(e, 'artist not found');
+      }
     };
 
     fetchDataMainArtist();
     fetchData();
-  }, []);
+  }, [artistParam]);
 
   return (
     <>
@@ -80,6 +89,7 @@ const ArtistPage = () => {
                   key={album.idAlbum}
                   id={album.idAlbum}
                   image={album.strAlbumThumb}
+                  backImage={album.strAlbumCDart}
                   name={album.strArtist}
                   albumTitle={album.strAlbum}
                   genre={album.strGenre}
