@@ -95,6 +95,7 @@ const ArtistPage = () => {
                   genre={album.strGenre}
                   year={album.intYearReleased}
                   label={album.strLabel}
+                  description={album.strDescriptionEN}
                 />
               );
             })}
