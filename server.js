@@ -5,8 +5,19 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const path = require('path');
 const app = express();
+const axios = require('axios');
 
 // JUST FOR DEMO PURPOSES, PUT YOUR ACTUAL API CODE HERE
+const getDbAPI = async () => {
+  return await axios.get(
+    'https://api.yelp.com/v3/businesses/search?location="2650 NW 5 Ave, Miami, FL 33127"&term="lunch"&radius=300',
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.YELP_API_KEY}`
+      }
+    }
+  );
+};
 app.get('/api/demo', (request, response) => {
   response.json({
     message: 'Hello from server.js'

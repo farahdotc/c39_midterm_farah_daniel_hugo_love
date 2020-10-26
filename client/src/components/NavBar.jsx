@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
@@ -12,39 +12,47 @@ const NavBar = () => {
   let artisInfoUpdated;
   const [inputArtist, setInputArtist] = useState('');
   const [artist, setArtist] = useState([]);
-  const [visible, setVisible] = useState('hidden');
   // let { artistParam } = useParams();
+  const isInitialMount = useRef(true);
+  const [visible, setVisible] = useState('hidden');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setInputArtist(e.target.elements);
-    console.dir(e);
+    setInputArtist(e.target.elements.searchbar.value);
+    console.dir(e.target.elements.searchbar.value);
   };
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        let response = await axios.get(
-          `https://theaudiodb.com/api/v1/json/1/search.php?s=${inputArtist}`
-        );
-        console.log(response);
-        setArtist(response);
-        artisInfoUpdated = response.data;
-        history.push({
-          pathname: inputArtist && `/artist_page/${inputArtist}`,
-          state: { detail: artisInfoUpdated }
-        });
-        // console.log(inputArtist);
-      } catch (e) {
-        console.log(e, 'Artist NOT found');
-        setVisible('visible');
-      }
-    };
-
-    getData();
-
-    console.log(artist);
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      const getData = async () => {
+        try {
+          let response = await axios.get(
+            `https://theaudiodb.com/api/v1/json/1/search.php?s=${inputArtist}`
+          );
+          console.log('response:', response.data.artists);
+          if (response.data.artists === null) {
+            setVisible('visible');
+            throw 'I got it';
+          }
+          setVisible('hidden');
+          setArtist(response);
+          artisInfoUpdated = response.data;
+          history.push({
+            pathname: inputArtist && `/artist_page/${inputArtist}`,
+            state: { detail: artisInfoUpdated }
+          });
+          // console.log(inputArtist);
+        } catch (e) {
+          console.log(e, 'Artist NOT found in the search');
+        }
+      };
+      getData();
+      console.log(artist);
+    }
   }, [inputArtist]);
+
   return (
     <div>
       <Navbar bg="dark" variant="dark">
@@ -53,19 +61,30 @@ const NavBar = () => {
           <Nav.Link>
             <Link to="/">Home</Link>
           </Nav.Link>
-          <Nav.Link href="#pricing">TOP3</Nav.Link>
+          <Nav.Link href="#pricing">TOP1</Nav.Link>
           <Nav.Link href="#pricing">TOP2</Nav.Link>
         </Nav>
         <Form onSubmit={handleSubmit} inline>
+          <h3
+            style={{
+              color: 'red',
+              fontSize: '1rem',
+              paddingRight: '10px',
+              paddingTop: '10px',
+              visibility: visible
+            }}
+          >
+            Artist NOT found, try again
+          </h3>
           <FormControl
             id="searchbar"
             type="text"
             placeholder="Search"
             className="mr-sm-2"
           />
-          <Button variant="outline-info" onClick={handleSubmit}>
+          {/* <Button variant="outline-info" type='submit'>
             Search
-          </Button>
+          </Button> */}
         </Form>
       </Navbar>
     </div>
