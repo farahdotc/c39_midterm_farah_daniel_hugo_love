@@ -12,6 +12,7 @@ const ArtistPage = () => {
   const [artist, setArtist] = useState([]);
   const [artistInfo, setArtistInfo] = useState([]);
   const [artistPicName, setArtistPicName] = useState({});
+  const [sortDirection, setSortDirection] = useState('asc');
   let { artistParam } = useParams();
 
   
@@ -53,17 +54,20 @@ const ArtistPage = () => {
   }, [artistParam]);
 
   const sortAscending = () => {
-    //const { artist } = this.state;
 
-    console.log('artist', artist)
-    //console.log('year', artist[0].intYearReleased)
-    let array;
-    array = artist.sort((a, b) => {
-      console.log(a.intYearReleased)
-      console.log(b.intYearReleased)
-      return a.intYearReleased - b.intYearReleased})
+    const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+    // we clone the state array
+    // so we don't mutate it accidentally 
+    // with sort
+    const array = [...artist].sort((a, b) => {
+      return newDirection === 'asc' 
+      ? Number(a.intYearReleased) - Number(b.intYearReleased)
+      : Number(b.intYearReleased) - Number(a.intYearReleased)
+    })
+
+    setSortDirection(newDirection)
+
     setArtist(array)
-    console.log(artist)
   }
 
 
@@ -88,7 +92,9 @@ const ArtistPage = () => {
             {artistPicName.strArtist}
           </h1>
         </div>
-        <button onClick={sortAscending}>Sort</button>
+        <div  style={{margin: '100px 5% -20px 5%'}}>
+          <button style={{color: 'white', backgroundColor: 'black'}}onClick={sortAscending}>Sort: {sortDirection}</button>
+        </div>
         <div
           style={{
             margin: '3rem',
