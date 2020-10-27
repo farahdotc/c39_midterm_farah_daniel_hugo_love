@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import axios from 'axios';
 import { useHistory, Link } from 'react-router-dom';
@@ -22,7 +21,6 @@ const NavBar = () => {
     console.dir(e.target.elements.searchbar.value);
   };
 
-
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -34,8 +32,7 @@ const NavBar = () => {
           );
           console.log('response:', response.data.artists);
 
-          if (response.data.artists === null){
-
+          if (response.data.artists === null) {
             setVisible('visible');
             throw 'I got it';
           }
@@ -51,9 +48,8 @@ const NavBar = () => {
           console.log(e, 'Artist NOT found in the search');
         }
       };
-    getData();
-    console.log(artist);
-
+      getData();
+      console.log(artist);
     }
   }, [inputArtist]);
 
@@ -69,7 +65,6 @@ const NavBar = () => {
           <Nav.Link href="#pricing">TOP2</Nav.Link>
         </Nav>
         <Form onSubmit={handleSubmit} inline>
-
           <h3
             style={{
               color: 'red',
