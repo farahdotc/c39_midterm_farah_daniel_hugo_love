@@ -9,19 +9,19 @@ const axios = require('axios');
 
 // JUST FOR DEMO PURPOSES, PUT YOUR ACTUAL API CODE HERE
 
-app.get('/getAlbums', async (req, res) => {
-  console.log('hello?');
-  const apiKey = 523532;
-  try {
-    const resp = await axios.get(
-      `theaudiodb.com/api/v1/json/${apiKey}/mostloved.php?format=album`
-    );
-    console.log(resp);
-    // FIX ME, something needs a little bit of tweaking
-  } catch (e) {
-    console.log(e.message);
-  }
-});
+// app.get('/getAlbums', async (req, res) => {
+//   console.log('hello?');
+//   const apiKey = ;
+//   try {
+//     const resp = await axios.get(
+//       `theaudiodb.com/api/v1/json/${apiKey}/mostloved.php?format=album`
+//     );
+//     console.log(resp);
+//     // FIX ME, something needs a little bit of tweaking
+//   } catch (e) {
+//     console.log(e.message);
+//   }
+
 // app.get('/api/demo', (request, response) => {
 //   response.json({
 //     message: 'Hello from server.js'`
