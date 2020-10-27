@@ -22,6 +22,7 @@ const NavBar = () => {
     console.dir(e.target.elements.searchbar.value);
   };
 
+
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -32,7 +33,9 @@ const NavBar = () => {
             `https://theaudiodb.com/api/v1/json/1/search.php?s=${inputArtist}`
           );
           console.log('response:', response.data.artists);
-          if (response.data.artists === null) {
+
+          if (response.data.artists === null){
+
             setVisible('visible');
             throw 'I got it';
           }
@@ -48,8 +51,9 @@ const NavBar = () => {
           console.log(e, 'Artist NOT found in the search');
         }
       };
-      getData();
-      console.log(artist);
+    getData();
+    console.log(artist);
+
     }
   }, [inputArtist]);
 
@@ -65,6 +69,7 @@ const NavBar = () => {
           <Nav.Link href="#pricing">TOP2</Nav.Link>
         </Nav>
         <Form onSubmit={handleSubmit} inline>
+
           <h3
             style={{
               color: 'red',
@@ -76,6 +81,7 @@ const NavBar = () => {
           >
             Artist NOT found, try again
           </h3>
+
           <FormControl
             id="searchbar"
             type="text"

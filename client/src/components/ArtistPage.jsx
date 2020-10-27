@@ -14,22 +14,25 @@ const ArtistPage = () => {
   const [artistPicName, setArtistPicName] = useState({});
   let { artistParam } = useParams();
 
+  
   useEffect(() => {
     const fetchDataMainArtist = async () => {
-      try {
-        let response = await axios.get(
-          `https://theaudiodb.com/api/v1/json/1/search.php?s=${artistParam}`
-        );
-        setArtistPicName(response.data.artists[0]);
-        //console.log(artistParam);
-        //console.log('firstFetch', response.data.artists[0]);
-      } catch (e) {
+      try{
+      let response = await axios.get(
+        `https://theaudiodb.com/api/v1/json/1/search.php?s=${artistParam}`
+      );
+      setArtistPicName(response.data.artists[0]);
+      //console.log(artistParam);
+      //console.log('firstFetch', response.data.artists[0]);
+      } catch(e){
+
         console.log(e, 'artist not found');
       }
     };
 
     const fetchData = async () => {
-      try {
+
+      try{
         let response = await axios.get(
           `https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artistParam}`
         );
@@ -40,7 +43,7 @@ const ArtistPage = () => {
         // console.log(response);
         console.log(artistParam);
         // console.log(props.location.state.detail.artists[0])
-      } catch (e) {
+      } catch(e){
         console.log(e, 'artist not found');
       }
     };
@@ -51,17 +54,18 @@ const ArtistPage = () => {
 
   const sortAscending = () => {
     //const { artist } = this.state;
-    console.log('artist', artist);
+
+    console.log('artist', artist)
     //console.log('year', artist[0].intYearReleased)
     let array;
     array = artist.sort((a, b) => {
-      console.log(a.intYearReleased);
-      console.log(b.intYearReleased);
-      return a.intYearReleased - b.intYearReleased;
-    });
-    setArtist(array);
-    console.log(artist);
-  };
+      console.log(a.intYearReleased)
+      console.log(b.intYearReleased)
+      return a.intYearReleased - b.intYearReleased})
+    setArtist(array)
+    console.log(artist)
+  }
+
 
   return (
     <>
