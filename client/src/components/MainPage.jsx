@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import ArtistPage from './ArtistPage';
+import MainPageTitle from './MainPageTitle';
 import { useHistory } from 'react-router-dom';
-// import MostLoved from './MostLoved';
 import AlbumCard from './AlbumCard';
+import Anime from 'react-anime';
 
 const MainPage = () => {
   let history = useHistory();
@@ -78,31 +77,30 @@ const MainPage = () => {
           alignItems: 'center'
         }}
       >
-        <h1
-          style={{
-            fontSize: '7rem',
-            color: '#CFCECA',
-            paddingBottom: '4.8rem',
-            fontFamily: 'Montserrat , sanSerif'
-          }}
+        <MainPageTitle />
+        <Anime
+          easing="linear"
+          opacity={[-1, 2]}
+          loop={false}
+          duration={3000}
+          delay={2500}
         >
-          you love music too?
-        </h1>
-        <Form
-          style={{ width: '40%', margin: '0 20px' }}
-          onSubmit={handleSubmit}
-        >
-          <Form.Control
-            id="searchbar"
-            size="lg"
-            type="text"
-            placeholder="Search for your favorite artist"
-            style={{ borderRadius: '23px' }}
-          />
-        </Form>
-        <h1 style={{ color: 'red', fontSize: '1rem', visibility: visible }}>
-          Artist NOT found... Try another artist
-        </h1>
+          <Form
+            style={{ width: '40%', margin: '100px' }}
+            onSubmit={handleSubmit}
+          >
+            <Form.Control
+              id="searchbar"
+              size="lg"
+              type="text"
+              placeholder="Search for your favorite artist"
+              style={{ borderRadius: '23px' }}
+            />
+          </Form>
+          <h1 style={{ color: 'red', fontSize: '1rem', visibility: visible }}>
+            Artist NOT found... Try another artist
+          </h1>
+        </Anime>
       </div>
       <div style={{ backgroundColor: '#2b2d42' }}>
         <h1
