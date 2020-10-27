@@ -66,6 +66,7 @@ const MainPage = () => {
   return (
     <div>
       <div
+        id="message"
         style={{
           width: '100vw',
           height: '1000px',
@@ -103,7 +104,7 @@ const MainPage = () => {
         </Anime>
       </div>
       <div style={{ backgroundColor: '#2b2d42' }}>
-        <h1
+        {/* <h1
           style={{
             textAlign: 'center',
             color: '#CFCECA',
@@ -113,7 +114,7 @@ const MainPage = () => {
         >
           {' '}
           50 Most Loved Albums of All Time{' '}
-        </h1>
+        </h1> */}
         <div
           style={{
             margin: '3rem',

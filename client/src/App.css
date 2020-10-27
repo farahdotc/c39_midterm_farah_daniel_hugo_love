@@ -1,11 +1,62 @@
-/* JUST FOR DEMO PURPORSES, REPLACE WITH YOUR OWN CODE */
+/* CODE GOR COLOR CYCLING */
 
-#demo {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+body {
+  animation: colorchange 15s linear 1s infinite;
+  -webkit-animation: colorchange 15s linear 0s infinite alternate;
 }
 
-/* END DEMO */
+@keyframes colorchange {
+  0% {
+    background: red;
+    color: cyan;
+  }
+  33% {
+    background: green;
+    color: magenta;
+  }
+  66% {
+    background: blue;
+    color: yellow;
+  }
+  100% {
+    background: red;
+    color: cyan;
+  }
+}
+
+@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */ {
+  0% {
+    background: red;
+    color: cyan;
+  }
+  33% {
+    background: green;
+    color: magenta;
+  }
+  66% {
+    background: blue;
+    color: yellow;
+  }
+  100% {
+    background: red;
+    color: cyan;
+  }
+}
+section {
+  width: 33vw;
+  margin: 0 auto;
+}
+#message {
+  text-align: center;
+  color: inherit;
+  opacity: 75%;
+  mix-blend-mode: difference;
+  font-family: Cooper Black, Helvetica, Arial;
+}
+h1 {
+  font-size: 4.69em;
+}
+p {
+  font-size: 1.6em;
+  font-family: Helvetica Neue, Helvetica, Arial;
+}
