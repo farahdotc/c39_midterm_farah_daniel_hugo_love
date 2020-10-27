@@ -22,7 +22,6 @@ const NavBar = () => {
     console.dir(e.target.elements.searchbar.value);
   };
 
-
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -34,8 +33,7 @@ const NavBar = () => {
           );
           console.log('response:', response.data.artists);
 
-          if (response.data.artists === null){
-
+          if (response.data.artists === null) {
             setVisible('visible');
             throw 'I got it';
           }
@@ -51,25 +49,27 @@ const NavBar = () => {
           console.log(e, 'Artist NOT found in the search');
         }
       };
-    getData();
-    console.log(artist);
-
+      getData();
+      console.log(artist);
     }
   }, [inputArtist]);
 
   return (
     <div>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">LOGO</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link>
-            <Link to="/">Home</Link>
+            <Link to="/">
+              <img
+                src="https://www.freefavicon.com/freefavicons/objects/music-152-166613.png"
+                alt="headphones logo"
+                width="30px"
+                height="30px"
+              />
+            </Link>
           </Nav.Link>
-          <Nav.Link href="#pricing">TOP1</Nav.Link>
-          <Nav.Link href="#pricing">TOP2</Nav.Link>
         </Nav>
         <Form onSubmit={handleSubmit} inline>
-
           <h3
             style={{
               color: 'red',
