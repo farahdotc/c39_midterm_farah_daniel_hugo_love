@@ -5,13 +5,28 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const path = require('path');
 const app = express();
+const axios = require('axios');
 
 // JUST FOR DEMO PURPOSES, PUT YOUR ACTUAL API CODE HERE
-app.get('/api/demo', (request, response) => {
-  response.json({
-    message: 'Hello from server.js'
-  });
-});
+
+// app.get('/getAlbums', async (req, res) => {
+//   console.log('hello?');
+//   const apiKey = ;
+//   try {
+//     const resp = await axios.get(
+//       `theaudiodb.com/api/v1/json/${apiKey}/mostloved.php?format=album`
+//     );
+//     console.log(resp);
+//     // FIX ME, something needs a little bit of tweaking
+//   } catch (e) {
+//     console.log(e.message);
+//   }
+
+// app.get('/api/demo', (request, response) => {
+//   response.json({
+//     message: 'Hello from server.js'`
+//   });
+// });
 // END DEMO
 
 if (process.env.NODE_ENV === 'production') {

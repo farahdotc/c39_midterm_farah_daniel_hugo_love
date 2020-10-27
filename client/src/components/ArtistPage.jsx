@@ -14,6 +14,7 @@ const ArtistPage = () => {
   const [artistPicName, setArtistPicName] = useState({});
   const [sortDirection, setSortDirection] = useState('asc');
   let { artistParam } = useParams();
+
   
   useEffect(() => {
     const fetchDataMainArtist = async () => {
@@ -25,11 +26,13 @@ const ArtistPage = () => {
       //console.log(artistParam);
       //console.log('firstFetch', response.data.artists[0]);
       } catch(e){
+
         console.log(e, 'artist not found');
       }
     };
 
     const fetchData = async () => {
+
       try{
         let response = await axios.get(
           `https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artistParam}`
@@ -42,7 +45,6 @@ const ArtistPage = () => {
         console.log(artistParam);
         // console.log(props.location.state.detail.artists[0])
       } catch(e){
-
         console.log(e, 'artist not found');
       }
     };
@@ -52,6 +54,7 @@ const ArtistPage = () => {
   }, [artistParam]);
 
   const sortAscending = () => {
+
     const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
     // we clone the state array
     // so we don't mutate it accidentally 
@@ -63,6 +66,7 @@ const ArtistPage = () => {
     })
 
     setSortDirection(newDirection)
+
     setArtist(array)
   }
 

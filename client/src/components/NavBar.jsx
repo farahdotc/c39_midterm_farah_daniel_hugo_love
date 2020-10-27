@@ -33,7 +33,9 @@ const NavBar = () => {
             `https://theaudiodb.com/api/v1/json/1/search.php?s=${inputArtist}`
           );
           console.log('response:', response.data.artists);
+
           if (response.data.artists === null){
+
             setVisible('visible');
             throw 'I got it';
           }
@@ -47,11 +49,11 @@ const NavBar = () => {
           // console.log(inputArtist);
         } catch (e) {
           console.log(e, 'Artist NOT found in the search');
-
         }
       };
     getData();
     console.log(artist);
+
     }
   }, [inputArtist]);
 
@@ -67,7 +69,19 @@ const NavBar = () => {
           <Nav.Link href="#pricing">TOP2</Nav.Link>
         </Nav>
         <Form onSubmit={handleSubmit} inline>
-          <h3 style={{color: 'red', fontSize: '1rem', paddingRight: '10px', paddingTop: '10px', visibility: visible}}>Artist NOT found, try again</h3>
+
+          <h3
+            style={{
+              color: 'red',
+              fontSize: '1rem',
+              paddingRight: '10px',
+              paddingTop: '10px',
+              visibility: visible
+            }}
+          >
+            Artist NOT found, try again
+          </h3>
+
           <FormControl
             id="searchbar"
             type="text"
