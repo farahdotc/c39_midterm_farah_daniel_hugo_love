@@ -56,13 +56,17 @@ const NavBar = () => {
   return (
     <div>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">LOGO</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link>
-            <Link to="/">Home</Link>
+            <Link to="/">
+              <img
+                src="https://www.freefavicon.com/freefavicons/objects/music-152-166613.png"
+                alt="headphones logo"
+                width="30px"
+                height="30px"
+              />
+            </Link>
           </Nav.Link>
-          <Nav.Link href="#pricing">TOP1</Nav.Link>
-          <Nav.Link href="#pricing">TOP2</Nav.Link>
         </Nav>
         <Form onSubmit={handleSubmit} inline>
           <h3
