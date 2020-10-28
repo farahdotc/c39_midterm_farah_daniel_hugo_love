@@ -86,18 +86,16 @@ const MainPage = () => {
           duration={3000}
           delay={2500}
         >
-          <Form
-            style={{ width: '40%', margin: '100px' }}
-            onSubmit={handleSubmit}
-          >
-            <Form.Control
-              id="searchbar"
-              size="lg"
-              type="text"
-              placeholder="Search for your favorite artist"
-              style={{ borderRadius: '23px' }}
-            />
-          </Form>
+          <div class="box">
+            <div class="container-2">
+              <Form
+                style={{ width: '40%', margin: '100px' }}
+                onSubmit={handleSubmit}
+              >
+                <input type="search" id="search" placeholder="Search..." />
+              </Form>
+            </div>
+          </div>
           <h1 style={{ color: 'red', fontSize: '1rem', visibility: visible }}>
             Artist NOT found... Try another artist
           </h1>
