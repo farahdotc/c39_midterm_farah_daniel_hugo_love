@@ -1,8 +1,6 @@
 import React from 'react';
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-
-
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -19,9 +17,7 @@ function MyVerticallyCenteredModal(props) {
       </Modal.Header>
       <Modal.Body>
         <h4>{props.title}</h4>
-        <p>
-          {props.description}
-        </p>
+        <p>{props.description}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
@@ -30,20 +26,25 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
-function AlbumDescription({description, title, name}) {
+function AlbumDescription({ description, title, name }) {
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Description
+      <Button
+        id="albumtext"
+        variant="primary"
+        onClick={() => setModalShow(true)}
+        style={{ borderRadius: '25px', backgroundColor: '#2b2d42' }}
+      >
+        Album Info
       </Button>
 
       <MyVerticallyCenteredModal
         show={modalShow}
-        description = {description}
-        title = {title}
-        name = {name}     
+        description={description}
+        title={title}
+        name={name}
         onHide={() => setModalShow(false)}
       />
     </>
