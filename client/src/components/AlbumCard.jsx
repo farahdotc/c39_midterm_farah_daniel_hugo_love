@@ -32,14 +32,6 @@ const AlbumCard = (props) => {
         <ListGroupItem id="albumtext">{props.year}</ListGroupItem>
         <ListGroupItem id="albumtext">{props.label}</ListGroupItem>
       </ListGroup>
-      <Card.Body>
-        <Card.Link href="#" id="albumtext">
-          Card Link
-        </Card.Link>
-        <Card.Link href="#" id="albumtext">
-          Another Link
-        </Card.Link>
-      </Card.Body>
     </Card>
   );
 };

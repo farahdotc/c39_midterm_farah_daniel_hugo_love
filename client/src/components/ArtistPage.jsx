@@ -10,7 +10,6 @@ import NavBar from './NavBar';
 
 const ArtistPage = () => {
   const [artist, setArtist] = useState([]);
-  const [artistInfo, setArtistInfo] = useState([]);
   const [artistPicName, setArtistPicName] = useState({});
   const [sortDirection, setSortDirection] = useState('asc');
   let { artistParam } = useParams();
@@ -22,8 +21,6 @@ const ArtistPage = () => {
           `https://theaudiodb.com/api/v1/json/1/search.php?s=${artistParam}`
         );
         setArtistPicName(response.data.artists[0]);
-        //console.log(artistParam);
-        //console.log('firstFetch', response.data.artists[0]);
       } catch (e) {
         console.log(e, 'artist not found');
       }
@@ -34,13 +31,7 @@ const ArtistPage = () => {
         let response = await axios.get(
           `https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artistParam}`
         );
-
         setArtist(response.data.album);
-        setArtistInfo(response.data.album[0]);
-        console.log(response.data.album);
-        // console.log(response);
-        console.log(artistParam);
-        // console.log(props.location.state.detail.artists[0])
       } catch (e) {
         console.log(e, 'artist not found');
       }
@@ -110,7 +101,6 @@ const ArtistPage = () => {
         >
           {artist &&
             artist.map((album) => {
-              //console.log(meal);
               return (
                 <AlbumCard
                   key={album.idAlbum}

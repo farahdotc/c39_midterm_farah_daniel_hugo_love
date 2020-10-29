@@ -5,20 +5,18 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import axios from 'axios';
 import { useHistory, Link } from 'react-router-dom';
+import Logo from "../Assets/headphones.png";
 
 const NavBar = () => {
   let history = useHistory();
   let artisInfoUpdated;
   const [inputArtist, setInputArtist] = useState('');
-  const [artist, setArtist] = useState([]);
-  // let { artistParam } = useParams();
   const isInitialMount = useRef(true);
   const [visible, setVisible] = useState('hidden');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setInputArtist(e.target.elements.searchbar.value);
-    console.dir(e.target.elements.searchbar.value);
   };
 
   useEffect(() => {
@@ -30,26 +28,22 @@ const NavBar = () => {
           let response = await axios.get(
             `https://theaudiodb.com/api/v1/json/1/search.php?s=${inputArtist}`
           );
-          console.log('response:', response.data.artists);
 
           if (response.data.artists === null) {
             setVisible('visible');
             throw 'I got it';
           }
           setVisible('hidden');
-          setArtist(response);
           artisInfoUpdated = response.data;
           history.push({
             pathname: inputArtist && `/artist_page/${inputArtist}`,
             state: { detail: artisInfoUpdated }
           });
-          // console.log(inputArtist);
         } catch (e) {
           console.log(e, 'Artist NOT found in the search');
         }
       };
       getData();
-      console.log(artist);
     }
   }, [inputArtist]);
 
@@ -57,16 +51,14 @@ const NavBar = () => {
     <div>
       <Navbar bg="dark" variant="dark">
         <Nav className="mr-auto">
-          <Nav.Link>
             <Link to="/">
               <img
-                src="https://www.freefavicon.com/freefavicons/objects/music-152-166613.png"
+                src={Logo}
                 alt="headphones logo"
-                width="30px"
-                height="30px"
+                width="40px"
+                height="40px"
               />
             </Link>
-          </Nav.Link>
         </Nav>
         <Form onSubmit={handleSubmit} inline id="albumtext">
           <h3
@@ -89,9 +81,6 @@ const NavBar = () => {
             placeholder="Search"
             className="mr-sm-2"
           />
-          {/* <Button variant="outline-info" type='submit'>
-            Search
-          </Button> */}
         </Form>
       </Navbar>
     </div>
