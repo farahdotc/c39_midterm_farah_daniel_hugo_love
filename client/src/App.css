@@ -51,7 +51,6 @@ section {
 #message {
   text-align: center;
   color: inherit;
-  opacity: 75%;
   mix-blend-mode: difference;
   font-family: Cooper Black, Helvetica, Arial;
 }
