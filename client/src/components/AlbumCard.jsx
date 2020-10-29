@@ -19,21 +19,26 @@ const AlbumCard = (props) => {
         }}
       />
       <Card.Body>
-        <Card.Title>{props.albumTitle}</Card.Title>
+        <Card.Title id="albumtext">{props.albumTitle}</Card.Title>
         <AlbumDescription
+          id="albumtext"
           description={props.description}
           title={props.albumTitle}
           name={props.name}
         />
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <ListGroupItem>{props.genre}</ListGroupItem>
-        <ListGroupItem>{props.year}</ListGroupItem>
-        <ListGroupItem>{props.label}</ListGroupItem>
+        <ListGroupItem id="albumtext">{props.genre}</ListGroupItem>
+        <ListGroupItem id="albumtext">{props.year}</ListGroupItem>
+        <ListGroupItem id="albumtext">{props.label}</ListGroupItem>
       </ListGroup>
       <Card.Body>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
+        <Card.Link href="#" id="albumtext">
+          Card Link
+        </Card.Link>
+        <Card.Link href="#" id="albumtext">
+          Another Link
+        </Card.Link>
       </Card.Body>
     </Card>
   );

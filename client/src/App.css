@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
 /* CODE GOR COLOR CYCLING */
 
 body {
@@ -95,18 +97,18 @@ p {
   transition: width 0.55s ease;
 }
 
-/* .container-2 input#search::-webkit-input-placeholder {
+.container-2 input#search::-webkit-input-placeholder {
   color: #65737e;
-} */
-/* 
-.container-2 input#search:-moz-placeholder { */
-/* Firefox 18- */
-/* color: #65737e;
 }
 
-.container-2 input#search::-moz-placeholder { */
-/* Firefox 19+ */
-/* color: #65737e;
+.container-2 input#search:-moz-placeholder {
+  /* Firefox 18- */
+  color: #65737e;
+}
+
+.container-2 input#search::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #65737e;
 }
 
 .container-2 input#search:-ms-input-placeholder {
@@ -132,4 +134,8 @@ p {
 }
 
 .container-2:hover .icon {
-} */
+}
+#albumtext {
+  color: grey;
+  font-family: 'Raleway', sans-serif;
+}

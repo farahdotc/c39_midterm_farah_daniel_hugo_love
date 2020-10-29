@@ -15,25 +15,22 @@ const ArtistPage = () => {
   const [sortDirection, setSortDirection] = useState('asc');
   let { artistParam } = useParams();
 
-  
   useEffect(() => {
     const fetchDataMainArtist = async () => {
-      try{
-      let response = await axios.get(
-        `https://theaudiodb.com/api/v1/json/1/search.php?s=${artistParam}`
-      );
-      setArtistPicName(response.data.artists[0]);
-      //console.log(artistParam);
-      //console.log('firstFetch', response.data.artists[0]);
-      } catch(e){
-
+      try {
+        let response = await axios.get(
+          `https://theaudiodb.com/api/v1/json/1/search.php?s=${artistParam}`
+        );
+        setArtistPicName(response.data.artists[0]);
+        //console.log(artistParam);
+        //console.log('firstFetch', response.data.artists[0]);
+      } catch (e) {
         console.log(e, 'artist not found');
       }
     };
 
     const fetchData = async () => {
-
-      try{
+      try {
         let response = await axios.get(
           `https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${artistParam}`
         );
@@ -44,7 +41,7 @@ const ArtistPage = () => {
         // console.log(response);
         console.log(artistParam);
         // console.log(props.location.state.detail.artists[0])
-      } catch(e){
+      } catch (e) {
         console.log(e, 'artist not found');
       }
     };
@@ -54,27 +51,25 @@ const ArtistPage = () => {
   }, [artistParam]);
 
   const sortAscending = () => {
-
     const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
     // we clone the state array
-    // so we don't mutate it accidentally 
+    // so we don't mutate it accidentally
     // with sort
     const array = [...artist].sort((a, b) => {
-      return newDirection === 'asc' 
-      ? Number(a.intYearReleased) - Number(b.intYearReleased)
-      : Number(b.intYearReleased) - Number(a.intYearReleased)
-    })
+      return newDirection === 'asc'
+        ? Number(a.intYearReleased) - Number(b.intYearReleased)
+        : Number(b.intYearReleased) - Number(a.intYearReleased);
+    });
 
-    setSortDirection(newDirection)
+    setSortDirection(newDirection);
 
-    setArtist(array)
-  }
-
+    setArtist(array);
+  };
 
   return (
-    <>
+    <div style={{ backgroundColor: 'grey' }}>
       <NavBar />
-      <div style={{ backgroundColor: 'gray' }}>
+      <div>
         <div
           style={{
             display: 'flex',
@@ -88,12 +83,22 @@ const ArtistPage = () => {
             src={artistPicName.strArtistThumb}
             alt="band"
           />
-          <h1 style={{ color: 'white', margin: '6rem' }}>
+          <h1 id="albumtext" style={{ color: 'white', margin: '6rem' }}>
             {artistPicName.strArtist}
           </h1>
         </div>
-        <div  style={{margin: '100px 5% -20px 5%'}}>
-          <button style={{color: 'white', backgroundColor: 'black'}}onClick={sortAscending}>Sort: {sortDirection}</button>
+        <div style={{ margin: '100px 5% -20px 5%' }}>
+          <button
+            id="albumtext"
+            style={{
+              color: 'white',
+              backgroundColor: 'black',
+              borderRadius: '15px'
+            }}
+            onClick={sortAscending}
+          >
+            Sort: {sortDirection}
+          </button>
         </div>
         <div
           style={{
@@ -123,7 +128,7 @@ const ArtistPage = () => {
             })}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

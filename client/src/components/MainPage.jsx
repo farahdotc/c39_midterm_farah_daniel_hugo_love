@@ -64,7 +64,7 @@ const MainPage = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ backgroundColor: '#2b2d42' }}>
       <div
         id="message"
         style={{
@@ -101,7 +101,7 @@ const MainPage = () => {
           </h1>
         </Anime>
       </div>
-      <div style={{ backgroundColor: '#2b2d42' }}>
+      <div>
         {/* <h1
           style={{
             textAlign: 'center',

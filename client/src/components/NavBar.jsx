@@ -68,7 +68,7 @@ const NavBar = () => {
             </Link>
           </Nav.Link>
         </Nav>
-        <Form onSubmit={handleSubmit} inline>
+        <Form onSubmit={handleSubmit} inline id="albumtext">
           <h3
             style={{
               color: 'red',
@@ -77,11 +77,13 @@ const NavBar = () => {
               paddingTop: '10px',
               visibility: visible
             }}
+            id="albumtext"
           >
             Artist NOT found, try again
           </h3>
 
           <FormControl
+            style={{ borderRadius: '25px' }}
             id="searchbar"
             type="text"
             placeholder="Search"
